@@ -51,4 +51,13 @@ describe("renderer layout styles", () => {
     expect(css).toMatch(/\.sessionbar\.error \.sb-msg\s*\{[^}]*overflow-wrap:\s*anywhere/s);
   });
 
+  it("keeps a long multiline agent reply readable and scrollable instead of truncated", async () => {
+    const css = await readFile(stylesPath, "utf8");
+
+    expect(css).toMatch(/\.sessionbar \.sb-reply\s*\{[^}]*white-space:\s*pre-wrap/s);
+    expect(css).toMatch(/\.sessionbar \.sb-reply\s*\{[^}]*overflow-wrap:\s*anywhere/s);
+    expect(css).toMatch(/\.sessionbar \.sb-reply\s*\{[^}]*overflow-y:\s*auto/s);
+    expect(css).toMatch(/\.sessionbar\.reply \.sb-msg\s*\{[^}]*white-space:\s*normal/s);
+  });
+
 });
